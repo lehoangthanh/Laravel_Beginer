@@ -12,6 +12,11 @@
     <div class="container py-4">
         <h2 class="text-danger">EDIT USER</h2>
     </div>
+    @if ($errors->any())
+    <div class="alert alert-danger container">
+        <span>Vui lòng kiểm tra lại dữ liệu !!!</span>
+    </div>
+    @endif
     <form class="container" action="{{ url('/users/update/'.$user->id) }}" method="post">
         {!! csrf_field() !!}
         <div class="mb-3">
@@ -21,10 +26,16 @@
         <div class="mb-3">
           <label class="form-label">Password</label>
           <input type="text" class="form-control" name="password" value="{{ $user->password }}">
+            @error('password')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <label class="form-label">Name</label>
             <input type="text" class="form-control" name="name" value="{{ $user->name }}">
+            @error('name')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
           </div>
         <button type="submit" class="btn btn-success">
             <i class="fa-solid fa-floppy-disk"></i>
