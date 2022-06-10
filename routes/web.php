@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,15 @@ Route::post('/users/store', [UserController::class, 'store']);
 Route::get('/users/edit/{id}', [UserController::class, 'edit']);
 Route::post('/users/update/{id}', [UserController::class, 'update']);
 Route::get('/users/delete/{id}', [UserController::class, 'delete']);
+
+Route::get('/cars', [CarController::class, 'index']);
+Route::get('/cars/create', [CarController::class, 'create']);
+Route::post('/cars/store', [CarController::class, 'store']);
+Route::get('/cars/edit/{id}', [CarController::class, 'edit']);
+Route::post('/cars/update/{id}', [CarController::class, 'update']);
+Route::get('/cars/delete/{id}', [CarController::class, 'delete']);
+
+
+
+
+
