@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +25,28 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/users', [UserController::class, 'index']);
-Route::get('/users/create', [UserController::class, 'create']);
-Route::post('/users/store', [UserController::class, 'store']);
-Route::get('/users/edit/{id}', [UserController::class, 'edit']);
-Route::post('/users/update/{id}', [UserController::class, 'update']);
-Route::get('/users/delete/{id}', [UserController::class, 'delete']);
+Route::prefix('users')->group(function () {
+    Route::get('/', [UserController::class, 'index']);
+    Route::get('/create', [UserController::class, 'create']);
+    Route::post('/store', [UserController::class, 'store']);
+    Route::get('/edit/{id}', [UserController::class, 'edit']);
+    Route::post('/update/{id}', [UserController::class, 'update']);
+    Route::get('/delete/{id}', [UserController::class, 'delete']);
+});
+
+Route::prefix('cars')->group(function () {
+    Route::get('/', [CarController::class, 'index']);
+    Route::get('/create', [CarController::class, 'create']);
+    Route::post('/store', [CarController::class, 'store']);
+    Route::get('/edit/{id}', [CarController::class, 'edit']);
+    Route::post('/update/{id}', [CarController::class, 'update']);
+    Route::get('/delete/{id}', [CarController::class, 'delete']);
+});
+
+
+
+
+
+
+
+
