@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Http\Requests\User\StoreRequest;
+use App\Http\Requests\User\UpdateRequest;
 
 class UserController extends Controller
 {
@@ -16,7 +18,7 @@ class UserController extends Controller
         return view('users.create');
     }
 
-    public function store(Request $request) {
+    public function store(StoreRequest $request) {
         $user = new User();
         $user->email = $request->email;
         $user->password = $request->password;
@@ -30,7 +32,7 @@ class UserController extends Controller
         return view('users.edit')->with('user', $user);
     }
 
-    public function update(Request $request, $id){
+    public function update(UpdateRequest $request, $id){
         $user = User::find($id);
         $user->password = $request->password;
         $user->name = $request->name;
